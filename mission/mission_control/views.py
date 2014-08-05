@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from models import *
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
@@ -34,17 +34,16 @@ def teacher_respose(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         new_cart = Exercise.objects.create(
-            owner=request.user.username,
-            title=data['title'],
-            image=data['image_url'],
-            price=data['price']
+            name=request.user.username,
+            topic=data['topic'],
+            difficulty=data['difficulty'],
+
 
         )
         mive = {
-            'owner': new_cart.owner,
-            'title': new_cart.title,
-            'image': new_cart.image,
-            'price': new_cart.price
+            'name': new_cart.name,
+            'topic': new_cart.topic,
+            'difficulty': new_cart.difficulty,
         }
         return HttpResponse(json.dumps(mive), content_type='application/json')
 
