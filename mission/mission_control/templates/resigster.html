@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 {% endblock %}
 {% block content %}
-    <form method="POST" action=".">
+    <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
 
