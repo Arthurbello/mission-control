@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -24,3 +25,8 @@ class Exercise(models.Model):
     name = models.CharField(max_length=120)
     topic = models.ForeignKey(Topic, related_name='exercise')
     difficulty = models.CharField(max_length=120)
+
+class Understand(models.Model):
+    user = models.ForeignKey(User)
+    exercise = models.ForeignKey(Exercise)
+    comprehension = models.BooleanField(default=False)
